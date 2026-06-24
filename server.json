@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "app.octotrip/flights",
+  "title": "OctoTrip Flights",
+  "description": "Free, no-login flight search with real-time pricing from multiple airlines and booking platforms. Affiliate-attributed booking links.",
+  "repository": {
+    "url": "https://github.com/octotrip/flights",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.octotrip.app/flights/mcp"
+    }
+  ]
+}

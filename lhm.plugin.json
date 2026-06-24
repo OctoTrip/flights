@@ -1,0 +1,33 @@
+{
+  "identifier": "octotrip-flights",
+  "name": "OctoTrip Flights",
+  "description": "Free flight search with real-time pricing from multiple airlines and booking platforms worldwide. No API key required. Booking links contain affiliate attribution.",
+  "version": "0.1.0",
+  "author": "OctoTrip",
+  "authorUrl": "https://github.com/OctoTrip",
+  "category": "travel",
+  "icon": "🐙",
+  "tags": ["flights", "travel", "airlines", "price-comparison"],
+  "tools": [
+    {
+      "name": "search",
+      "description": "Searches live flight offers between an origin and destination for given travel dates. Supports one-way and round-trip with flexible passenger counts and cabin class. Returns price-ranked results grouped by number of stops. The tool queries external flight aggregator APIs in real time and includes affiliate booking links. Results and booking links are valid for approximately 15 minutes due to real-time airline pricing. It does not book flights, modify reservations, charge users, or store user data.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "origin": { "type": "string", "description": "Departure city, airport name, or IATA code (e.g. 'Frankfurt', 'JFK', 'London Heathrow')." },
+          "destination": { "type": "string", "description": "Arrival city, airport name, or IATA code." },
+          "departure_date": { "type": "string", "description": "Departure date. Accepts common formats such as YYYY-MM-DD, DD.MM.YYYY, or natural-language dates." },
+          "return_date": { "type": "string", "description": "Return date for round-trip. Omit for one-way flights." },
+          "adults": { "type": "integer", "description": "Number of adult passengers (1-9). Defaults to 1.", "minimum": 1, "maximum": 9 },
+          "children": { "type": "integer", "description": "Number of children aged 2-11 (0-9). Defaults to 0.", "minimum": 0, "maximum": 9 },
+          "infants": { "type": "integer", "description": "Number of infants under 2 (0-9). Defaults to 0.", "minimum": 0, "maximum": 9 },
+          "trip_class": { "type": "string", "description": "Cabin class: Y for economy, C for business. Defaults to Y." },
+          "currency": { "type": "string", "description": "Preferred ISO 4217 currency code for prices (e.g. EUR, USD, GBP). Defaults to EUR." },
+          "locale": { "type": "string", "description": "Preferred language code (e.g. en, de, fr). Defaults to en." }
+        },
+        "required": ["origin", "destination", "departure_date"]
+      }
+    }
+  ]
+}
