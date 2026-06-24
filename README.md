@@ -165,6 +165,14 @@ Add to your Cline MCP settings:
 }
 ```
 
+## Use with Smithery
+
+Install via [Smithery](https://smithery.ai/servers/xltnapps/octotrip-flights):
+
+```bash
+npx -y @smithery/cli install xltnapps/octotrip-flights --client claude
+```
+
 ## Privacy
 
 This server does not store, log, or track any user data. Queries are forwarded to provider APIs and results are returned directly. See [PRIVACY.md](PRIVACY.md) for details.
