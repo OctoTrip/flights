@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OctoTrip Flights — Response Schema",
+  "oneOf": [
+    { "$ref": "#/$defs/success" },
+    { "$ref": "#/$defs/error" },
+    { "$ref": "#/$defs/disambiguation" }
+  ],
+  "$defs": {
+    "success": {
+      "type": "object",
+      "required": ["results", "total", "total_available", "validity", "origin_resolved", "destination_resolved", "query"],
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/flight_result" }
+        },
+        "total": { "type": "integer", "description": "Number of results returned (after aggregation)" },
+        "total_available": { "type": "integer", "description": "Unique itineraries found before aggregation" },
+        "validity": { "type": "string", "description": "How long results/booking links remain valid" },
+        "origin_resolved": { "$ref": "#/$defs/airport" },
+        "destination_resolved": { "$ref": "#/$defs/airport" },
+        "query": { "$ref": "#/$defs/query" }
+      }
+    },
+    "flight_result": {
+      "type": "object",
+      "properties": {
+        "airline": { "type": "string", "description": "Validating carrier name" },
+        "airline_code": { "type": "string", "description": "IATA airline code" },
+        "alliance": { "type": "string" },
+        "flight_numbers": { "type": "array", "items": { "type": "string" } },
+        "is_direct": { "type": "boolean" },
+        "stops": { "type": "integer" },
+        "total_duration_minutes": { "type": "integer" },
+        "outbound": { "$ref": "#/$defs/segment" },
+        "return": {
+          "oneOf": [
+            { "$ref": "#/$defs/segment" },
+            { "type": "null" }
+          ],
+          "description": "null for one-way flights"
+        },
+        "price": { "type": "number" },
+        "currency": { "type": "string" },
+        "baggage": { "type": "string", "description": "e.g. 'No checked bag, Cabin bag: 1x8kg'" },
+        "gate": { "type": "string", "description": "Booking platform name" },
+        "booking_url": { "type": "string", "format": "uri" },
+        "link_type": { "type": "string", "const": "affiliate" },
+        "affiliate_disclosure": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "segment": {
+      "type": "object",
+      "properties": {
+        "departure": { "type": "string", "description": "IATA code" },
+        "arrival": { "type": "string", "description": "IATA code" },
+        "departure_time": { "type": "string" },
+        "arrival_time": { "type": "string" },
+        "departure_date": { "type": "string" },
+        "arrival_date": { "type": "string" },
+        "duration_minutes": { "type": "integer" },
+        "stops": { "type": "integer" },
+        "legs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/leg" }
+        }
+      }
+    },
+    "leg": {
+      "type": "object",
+      "properties": {
+        "flight_number": { "type": "string" },
+        "carrier": { "type": "string" },
+        "aircraft": { "type": "string" },
+        "departure": { "type": "string" },
+        "arrival": { "type": "string" },
+        "departure_time": { "type": "string" },
+        "arrival_time": { "type": "string" },
+        "departure_date": { "type": "string" },
+        "arrival_date": { "type": "string" },
+        "duration_minutes": { "type": "integer" }
+      }
+    },
+    "airport": {
+      "type": "object",
+      "properties": {
+        "iata": { "type": "string" },
+        "name": { "type": "string" },
+        "city": { "type": "string" },
+        "country": { "type": "string" }
+      }
+    },
+    "query": {
+      "type": "object",
+      "properties": {
+        "origin": { "type": "string" },
+        "destination": { "type": "string" },
+        "departure_date": { "type": "string", "format": "date" },
+        "return_date": { "type": ["string", "null"] },
+        "adults": { "type": "integer" },
+        "children": { "type": "integer" },
+        "infants": { "type": "integer" },
+        "trip_class": { "type": "string" },
+        "currency": { "type": "string" },
+        "locale": { "type": "string" }
+      }
+    },
+    "error": {
+      "type": "object",
+      "required": ["error", "message"],
+      "properties": {
+        "error": { "type": "string", "enum": ["airport_not_found", "invalid_date", "no_results", "rate_limited"] },
+        "message": { "type": "string" },
+        "suggestion": { "type": "string" },
+        "origin_resolved": { "$ref": "#/$defs/airport" },
+        "destination_resolved": { "$ref": "#/$defs/airport" }
+      }
+    },
+    "disambiguation": {
+      "type": "object",
+      "required": ["error", "message", "airports"],
+      "properties": {
+        "error": { "type": "string", "const": "disambiguation_needed" },
+        "message": { "type": "string" },
+        "airports": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/airport" }
+        }
+      }
+    }
+  }
+}
