@@ -8,6 +8,10 @@
   "category": "travel",
   "icon": "🐙",
   "tags": ["flights", "travel", "airlines", "price-comparison"],
+  "server": {
+    "type": "streamable-http",
+    "url": "https://mcp.octotrip.app/flights/mcp"
+  },
   "tools": [
     {
       "name": "search",
