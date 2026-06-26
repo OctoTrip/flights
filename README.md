@@ -2,7 +2,12 @@
 
 Free, no-login MCP server for searching and comparing flights with real-time pricing from multiple airlines and booking platforms worldwide.
 
-**Endpoint:** `https://mcp.octotrip.app/flights/mcp`
+**Endpoint:**
+```
+https://mcp.octotrip.app/flights/mcp
+```
+
+![Demo](https://raw.githubusercontent.com/octotrip/rental-cars/main/claude.gif)
 
 ## Related
 
