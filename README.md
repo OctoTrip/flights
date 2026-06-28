@@ -2,7 +2,7 @@
 
 Free, no-login MCP server for searching and comparing flights with real-time pricing from multiple airlines and booking platforms worldwide.
 
-**Endpoint:**
+**MCP Streamable HTTP Endpoint:**
 ```
 https://mcp.octotrip.app/flights/mcp
 ```
@@ -32,6 +32,161 @@ Add to your MCP client configuration:
 ```
 
 No API key or login required.
+
+## Use with...
+
+<details>
+<summary><strong>Claude Desktop</strong></summary>
+
+Add to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "octotrip-flights": {
+      "url": "https://mcp.octotrip.app/flights/mcp"
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><strong>Cursor / Windsurf</strong></summary>
+
+Add to your MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "octotrip-flights": {
+      "url": "https://mcp.octotrip.app/flights/mcp"
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><strong>Cline</strong></summary>
+
+Add to your Cline MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "octotrip-flights": {
+      "url": "https://mcp.octotrip.app/flights/mcp"
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><strong>LobeHub</strong></summary>
+
+[![MCP Badge](https://lobehub.com/badge/mcp/octotrip-flights)](https://lobehub.com/mcp/octotrip-flights)
+
+</details>
+
+<details>
+<summary><strong>OpenClaw</strong></summary>
+
+```bash
+openclaw plugins install clawhub:@xltnapps/octotrip-flights
+```
+
+</details>
+
+<details>
+<summary><strong>Smithery</strong></summary>
+
+Install via [Smithery](https://smithery.ai/servers/xltnapps/octotrip-flights):
+
+```bash
+npx -y @smithery/cli install xltnapps/octotrip-flights --client claude
+```
+
+</details>
+
+<details>
+<summary><strong>Hermes Agent</strong></summary>
+
+```bash
+hermes mcp add octotrip-flights --url https://mcp.octotrip.app/flights/mcp
+hermes mcp test octotrip-flights
+```
+
+Or add to `~/.hermes/config.yaml`:
+
+```yaml
+mcp_servers:
+  octotrip_flights:
+    url: "https://mcp.octotrip.app/flights/mcp"
+```
+
+</details>
+
+<details>
+<summary><strong>Stdio-only clients</strong></summary>
+
+For MCP clients that only support stdio transport:
+
+```bash
+npx mcp-remote https://mcp.octotrip.app/flights/mcp
+```
+
+</details>
+
+<details>
+<summary><strong>curl / Protocol Example</strong></summary>
+
+A complete MCP session using curl (initialize, list tools, call search):
+
+```bash
+# 1. Initialize
+curl -s -X POST https://mcp.octotrip.app/flights/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{
+    "jsonrpc": "2.0", "id": 1, "method": "initialize",
+    "params": {
+      "protocolVersion": "2025-03-26",
+      "capabilities": {},
+      "clientInfo": {"name": "example", "version": "1.0"}
+    }
+  }'
+
+# 2. List tools
+curl -s -X POST https://mcp.octotrip.app/flights/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc": "2.0", "id": 2, "method": "tools/list"}'
+
+# 3. Search
+curl -s -X POST https://mcp.octotrip.app/flights/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{
+    "jsonrpc": "2.0", "id": 3, "method": "tools/call",
+    "params": {
+      "name": "search",
+      "arguments": {
+        "origin": "FRA",
+        "destination": "BCN",
+        "departure_date": "2026-08-01"
+      }
+    }
+  }'
+```
+
+Transport: stateless streamable HTTP. Responses use `text/event-stream` (SSE). No session persistence or resumability. Rate limit: 1 request/second with burst capacity of 5.
+
+</details>
 
 ## Tool: `search`
 
@@ -131,99 +286,6 @@ The server returns structured errors with suggestions:
 - I need a one-way flight from LAX to Tokyo next Friday, economy class
 - Search for 2 adults and 1 child flying from Barcelona to Paris on September 1
 - What's the cheapest business class flight from Dubai to Singapore this month?
-
-## Use with Claude Desktop
-
-Add to `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "octotrip-flights": {
-      "url": "https://mcp.octotrip.app/flights/mcp"
-    }
-  }
-}
-```
-
-## Use with Cursor / Windsurf
-
-Add to your MCP settings:
-
-```json
-{
-  "mcpServers": {
-    "octotrip-flights": {
-      "url": "https://mcp.octotrip.app/flights/mcp"
-    }
-  }
-}
-```
-
-## Use with Cline
-
-Add to your Cline MCP settings:
-
-```json
-{
-  "mcpServers": {
-    "octotrip-flights": {
-      "url": "https://mcp.octotrip.app/flights/mcp"
-    }
-  }
-}
-```
-
-## Use with Smithery
-
-Install via [Smithery](https://smithery.ai/servers/xltnapps/octotrip-flights):
-
-```bash
-npx -y @smithery/cli install xltnapps/octotrip-flights --client claude
-```
-
-## Protocol Example
-
-A complete MCP session using curl (initialize, list tools, call search):
-
-```bash
-# 1. Initialize
-curl -s -X POST https://mcp.octotrip.app/flights/mcp \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json, text/event-stream" \
-  -d '{
-    "jsonrpc": "2.0", "id": 1, "method": "initialize",
-    "params": {
-      "protocolVersion": "2025-03-26",
-      "capabilities": {},
-      "clientInfo": {"name": "example", "version": "1.0"}
-    }
-  }'
-
-# 2. List tools
-curl -s -X POST https://mcp.octotrip.app/flights/mcp \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json, text/event-stream" \
-  -d '{"jsonrpc": "2.0", "id": 2, "method": "tools/list"}'
-
-# 3. Search
-curl -s -X POST https://mcp.octotrip.app/flights/mcp \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json, text/event-stream" \
-  -d '{
-    "jsonrpc": "2.0", "id": 3, "method": "tools/call",
-    "params": {
-      "name": "search",
-      "arguments": {
-        "origin": "FRA",
-        "destination": "BCN",
-        "departure_date": "2026-08-01"
-      }
-    }
-  }'
-```
-
-Transport: stateless streamable HTTP. Responses use `text/event-stream` (SSE). No session persistence or resumability. Rate limit: 1 request/second with burst capacity of 5.
 
 ## Privacy
 
