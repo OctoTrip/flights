@@ -7,7 +7,7 @@
     "url": "https://github.com/octotrip/flights",
     "source": "github"
   },
-  "version": "0.2.0",
+  "version": "1.0.0",
   "remotes": [
     {
       "type": "streamable-http",

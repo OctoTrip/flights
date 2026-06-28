@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.0] - 2026-06-28
+
+Initial stable release.
+
+- Hosted streamable HTTP + SSE MCP server
+- `search` tool with origin, destination, departure/return dates, passengers, cabin class, and currency
+- No auth, no API key required
+
 ## 0.2.0 - 2026-06-25
 
 ### Added

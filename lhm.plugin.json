@@ -2,7 +2,7 @@
   "identifier": "octotrip-flights",
   "name": "OctoTrip Flights",
   "description": "Free flight search with real-time pricing from multiple airlines and booking platforms worldwide. No API key required. Booking links contain affiliate attribution.",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "author": "OctoTrip",
   "authorUrl": "https://github.com/OctoTrip",
   "category": "travel",
