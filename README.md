@@ -1,5 +1,8 @@
 # OctoTrip Flights MCP Server
 
+[![OctoTrip/flights MCP server](https://glama.ai/mcp/servers/OctoTrip/flights/badges/score.svg)](https://glama.ai/mcp/servers/OctoTrip/flights)
+[![Uptime](https://img.shields.io/uptimerobot/ratio/30/m803370038-14af5f666d9552c6adf1178c)](https://stats.uptimerobot.com/ZEq8YVyOAu)
+
 Free, no-login MCP server for searching and comparing flights with real-time pricing from multiple airlines and booking platforms worldwide.
 
 **MCP Streamable HTTP Endpoint:**
