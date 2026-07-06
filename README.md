@@ -1,6 +1,7 @@
 # OctoTrip Flights MCP Server
 
-[![OctoTrip/flights MCP server](https://glama.ai/mcp/servers/OctoTrip/flights/badges/score.svg)](https://glama.ai/mcp/servers/OctoTrip/flights)
+[![Glama Score](https://glama.ai/mcp/servers/OctoTrip/flights/badges/score.svg)](https://glama.ai/mcp/servers/OctoTrip/flights)
+[![Glimind reliability](https://glimind.com/v1/badge/mcp-registry%2Fapp.octotrip%2Fflights.svg)](https://glimind.com/tool/mcp-registry%2Fapp.octotrip%2Fflights?ref=badge)
 [![Uptime](https://img.shields.io/uptimerobot/ratio/30/m803370038-14af5f666d9552c6adf1178c)](https://stats.uptimerobot.com/ZEq8YVyOAu)
 
 Free, no-login MCP server for searching and comparing flights with real-time pricing from multiple airlines and booking platforms worldwide.
