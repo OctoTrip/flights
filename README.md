@@ -93,7 +93,7 @@ Add to your Cline MCP settings:
 <details>
 <summary><strong>LobeHub</strong></summary>
 
-[![MCP Badge](https://lobehub.com/badge/mcp/octotrip-flights)](https://lobehub.com/mcp/octotrip-flights)
+[![MCP Badge](https://lobehub.com/badge/mcp/xltnapps-octotrip-flights)](https://lobehub.com/mcp/xltnapps-octotrip-flights)
 
 </details>
 
