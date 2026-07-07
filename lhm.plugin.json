@@ -1,5 +1,5 @@
 {
-  "identifier": "octotrip-flights",
+  "identifier": "xltnapps-octotrip-flights",
   "name": "OctoTrip Flights",
   "description": "Free flight search with real-time pricing from multiple airlines and booking platforms worldwide. No API key required. Booking links contain affiliate attribution.",
   "version": "1.0.0",
