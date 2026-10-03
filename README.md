@@ -1,6 +1,7 @@
 # OctoTrip Flights MCP Server
 
 [![Glama Score](https://glama.ai/mcp/servers/OctoTrip/flights/badges/score.svg)](https://glama.ai/mcp/servers/OctoTrip/flights)
+[![PulseMCP](https://img.shields.io/badge/PulseMCP-listed-blue)](https://www.pulsemcp.com/servers/octotrip-flights)
 [![Glimind reliability](https://glimind.com/v1/badge/mcp-registry%2Fapp.octotrip%2Fflights.svg)](https://glimind.com/tool/mcp-registry%2Fapp.octotrip%2Fflights?ref=badge)
 [![Uptime](https://img.shields.io/uptimerobot/ratio/30/m803370038-14af5f666d9552c6adf1178c)](https://stats.uptimerobot.com/ZEq8YVyOAu)
 
