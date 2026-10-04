@@ -1,0 +1,10 @@
+{
+  "name": "octotrip-flights",
+  "version": "1.0.0",
+  "description": "Free MCP server for live flight search with real-time pricing. No API key required.",
+  "mcpServers": {
+    "octotrip-flights": {
+      "httpUrl": "https://mcp.octotrip.app/flights/mcp"
+    }
+  }
+}
